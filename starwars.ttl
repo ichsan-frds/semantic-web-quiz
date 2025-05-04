@@ -3,6 +3,9 @@
 @prefix voc: <https://swapi.co/vocabulary/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 voc:Amphibian a rdfs:Class .
 
