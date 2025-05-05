@@ -1,0 +1,170 @@
+@prefix : <http://example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix voc: <https://swapi.co/vocabulary/> .
+
+# Menghubungkan dengan movies.ttl dan starwars.ttl
+<http://example.org/ontology> a owl:Ontology ;
+              owl:imports <https://raw.githubusercontent.com/ichsan-frds/semantic-web-quiz/refs/heads/main/movies.ttl> ;
+              owl:imports <https://raw.githubusercontent.com/ichsan-frds/semantic-web-quiz/refs/heads/main/starwars.ttl> .
+
+# Deklarasi Kelas
+:Actor a owl:Class .
+:Director a owl:Class .
+:Genre a owl:Class .
+
+# Deklarasi Properti
+:starredIn a owl:ObjectProperty ;
+    rdfs:domain :Actor ;
+    rdfs:range voc:Film .
+
+:directedBy a owl:ObjectProperty ;
+    rdfs:domain voc:Film ;
+    rdfs:range :Director .
+
+:hasGenre a owl:ObjectProperty ;
+    rdfs:domain voc:Film ;
+    rdfs:range :Genre .
+
+:hasCharacter a owl:ObjectProperty ;
+    rdfs:domain voc:Film ;
+    rdfs:range voc:Character .
+
+:hasActor a owl:ObjectProperty ;
+    rdfs:domain voc:Film ;
+    rdfs:range :Actor .
+
+:plays a owl:ObjectProperty ;
+    rdfs:domain :Actor ;
+    rdfs:range voc:Character .
+
+:releaseYear a owl:DatatypeProperty ;
+    rdfs:domain voc:Film ;
+    rdfs:range xsd:gYear .
+
+# Deklarasi Individu (Instances)
+:Sci-Fi a :Genre .
+
+:GeorgeLucas a :Director ;
+    rdfs:label "George Lucas" .
+
+:IrvinKershner a :Director ;
+    rdfs:label "Irvin Kershner" .
+
+:J.J.Abrams a :Director ;
+    rdfs:label "J. J. Abrams" .
+
+:RichardMarquand a :Director ;
+    rdfs:label "Richard Marquand" .
+
+:MarkHamill a :Actor ;
+    rdfs:label "Mark Hamill" ;
+    :starredIn <https://swapi.co/resource/film/1> , <https://swapi.co/resource/film/2> , <https://swapi.co/resource/film/3> ;
+    :plays <https://swapi.co/resource/human/1> .
+
+:HarrisonFord a :Actor ;
+    rdfs:label "Harrison Ford" ;
+    :starredIn <https://swapi.co/resource/film/1> , <https://swapi.co/resource/film/2> , <https://swapi.co/resource/film/3> ;
+    :plays <https://swapi.co/resource/human/14> .
+
+:CarrieFisher a :Actor ;
+    rdfs:label "Carrie Fisher" ;
+    :starredIn <https://swapi.co/resource/film/1> , <https://swapi.co/resource/film/2> , <https://swapi.co/resource/film/3> ;
+    :plays <https://swapi.co/resource/human/5> .
+    
+:EwanMcGregor a :Actor ;
+    rdfs:label "Ewan McGregor" ;
+    :starredIn <https://swapi.co/resource/film/4>, <https://swapi.co/resource/film/5>, <https://swapi.co/resource/film/6> ;
+    :plays <https://swapi.co/resource/human/10> .
+
+:LiamNeeson a :Actor ;
+    rdfs:label "Liam Neeson" ;
+    :starredIn <https://swapi.co/resource/film/4> ;
+    :plays <https://swapi.co/resource/human/32> .
+
+:NataliePortman a :Actor ;
+    rdfs:label "Natalie Portman" ;
+    :starredIn <https://swapi.co/resource/film/4>, <https://swapi.co/resource/film/5>, <https://swapi.co/resource/film/6> ;
+    :plays <https://swapi.co/resource/human/35> .
+
+:HaydenChristensen a :Actor ;
+    rdfs:label "Hayden Christensen" ;
+    :starredIn <https://swapi.co/resource/film/5>, <https://swapi.co/resource/film/6> ;
+    :plays <https://swapi.co/resource/human/11> .
+
+:DaisyRidley a :Actor ;
+    rdfs:label "Daisy Ridley" ;
+    :starredIn <https://swapi.co/resource/film/7> ;
+    :plays <https://swapi.co/resource/human/85> .
+
+:JohnBoyega a :Actor ;
+    rdfs:label "John Boyega" ;
+    :starredIn <https://swapi.co/resource/film/7> ;
+    :plays <https://swapi.co/resource/human/84> .
+
+:OscarIsaac a :Actor ;
+    rdfs:label "Oscar Isaac" ;
+    :starredIn <https://swapi.co/resource/film/7> ;
+    :plays <https://swapi.co/resource/human/86> .
+
+<https://swapi.co/resource/film/1>
+    :hasGenre :Sci-Fi ;
+    :directedBy :GeorgeLucas ;
+    :hasActor :MarkHamill , :HarrisonFord , :CarrieFisher ;
+    :releaseYear "1977"^^xsd:gYear .
+
+<https://swapi.co/resource/film/2>
+    :hasGenre :Sci-Fi ;
+    :directedBy :IrvinKershner ;
+    :hasActor :MarkHamill , :HarrisonFord , :CarrieFisher ;
+    :releaseYear "1980"^^xsd:gYear .
+
+<https://swapi.co/resource/film/3>
+    :hasGenre :Sci-Fi ;
+    :directedBy :RichardMarquand ;
+    :hasActor :MarkHamill , :HarrisonFord , :CarrieFisher ;
+    :releaseYear "1983"^^xsd:gYear .
+
+<https://swapi.co/resource/film/4>
+    :hasGenre :Sci-Fi ;
+    :directedBy :GeorgeLucas ;
+    :hasActor :EwanMcGregor , :LiamNeeson, :NataliePortman ;
+    :releaseYear "1999"^^xsd:gYear .
+
+<https://swapi.co/resource/film/5>
+    :hasGenre :Sci-Fi ;
+    :directedBy :GeorgeLucas ;
+    :hasActor :HaydenChristensen , :NataliePortman, :EwanMcGregor ;
+    :releaseYear "2002"^^xsd:gYear .
+
+<https://swapi.co/resource/film/6>
+    :hasGenre :Sci-Fi ;
+    :directedBy :GeorgeLucas ;
+    :hasActor :HaydenChristensen , :NataliePortman, :EwanMcGregor ;
+    :releaseYear "2005"^^xsd:gYear .
+
+<https://swapi.co/resource/film/7>
+    :hasGenre :Sci-Fi ;
+    :directedBy :J.J.Abrams ;
+    :hasActor :DaisyRidley , :JohnBoyega, :OscarIsaac ;
+    :releaseYear "2015"^^xsd:gYear .
+
+# Actor cannot be Director at the same time and vice versa (at least in Star Wars)
+:Actor owl:disjointWith :Director .
+
+# Cardinality
+## Every Movie needs to have at least 1 Director
+:MovieSubClassWithDirector a owl:Class ;
+    owl:intersectionOf (
+        voc:Film
+        [ a owl:Restriction ;
+          owl:onProperty :directedBy ;
+          owl:minCardinality "1"^^xsd:nonNegativeInteger ]
+    ) .
+
+    # Reasoning
+    ## :StarWarsIII a :MovieSubClassWithDirector .
+    ## :StarWarsIV a :MovieSubClassWithDirector .
+    ## :StarWarsV a :MovieSubClassWithDirector .
